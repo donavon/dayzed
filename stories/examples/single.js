@@ -29,6 +29,7 @@ class Single extends React.Component {
         <Datepicker
           selected={this.state.selectedDate}
           onDateSelected={this._handleOnDateSelected}
+          firstDayOfWeek={this.props.firstDayOfWeek}
         />
         {this.state.selectedDate && (
           <div style={{ paddingTop: 20, textAlign: "center" }}>

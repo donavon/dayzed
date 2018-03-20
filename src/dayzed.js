@@ -18,19 +18,21 @@ class Dayzed extends React.Component {
   /*------------------------- React Component Lifecycle Methods ---*/
 
   render() {
-    let calendars = getCalendars({
-      ...this.props,
+    const { children, render = children, firstDayOfWeek, ...otherProps } = this.props;
+
+    const calendars = getCalendars({
+      ...otherProps,
       offset: this.getOffset()
     });
-    let children = unwrapChildrenForPreact(
-      this.props.render || this.props.children
-    );
-    return children({
+
+    const props = {
       calendars,
       getDateProps: this.getDateProps,
       getBackProps: this.getBackProps,
       getForwardProps: this.getForwardProps
-    });
+    };
+
+    return unwrapChildrenForPreact(render)(props);
   }
 
   /*------------------------- Prop Getters ---*/

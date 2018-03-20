@@ -11,6 +11,7 @@ import Range from "./examples/range";
 function loadStories() {
   storiesOf("Examples", module)
     .add("Single Date Selection", () => <Single />)
+    .add("Single Date (Monday)", () => <Single firstDayOfWeek={1} />)
     .add("Multi Date Selection", () => <Multi />)
     .add("Min and Max Date", () => <MinMax />)
     .add("Display Multiple Months", () => <MonthsToDisplay />)

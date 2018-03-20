@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@storybook/react": "^3.2.12",
+    "arrow-keys-react": "^1.0.6",
     "kcd-scripts": "^0.24.0",
     "preact": "^8.2.5",
     "prop-types": "^15.6.0",

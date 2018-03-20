@@ -31,14 +31,8 @@ export function requiredProp(fnName, propName) {
  * @return {*} the arg or it's first item
  */
 export function unwrapChildrenForPreact(arg) {
-  arg = Array.isArray(arg) ? /* istanbul ignore next (preact) */ arg[0] : arg;
-  if (!arg) {
-    return noop;
-  } else {
-    return arg;
-  }
+  return Array.isArray(arg) ? /* istanbul ignore next (preact) */ arg[0] : arg;
 }
-function noop() {}
 
 /**
  * Takes a calendars array and figures out the number of months to subtract

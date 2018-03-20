@@ -112,15 +112,18 @@ class Dayzed extends React.Component {
     }
   };
 }
+function noop() {}
 
 Dayzed.defaultProps = {
   date: new Date(),
   monthsToDisplay: 1,
-  onOffsetChanged: () => {}
+  onOffsetChanged: noop,
+  children: noop,
 };
 
 Dayzed.propTypes = {
   render: PropTypes.func,
+  children: PropTypes.func,
   date: PropTypes.instanceOf(Date),
   maxDate: PropTypes.instanceOf(Date),
   minDate: PropTypes.instanceOf(Date),

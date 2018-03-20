@@ -124,6 +124,7 @@ export function isForwardDisabled({ calendars, maxDate }) {
  * @param {Number} param.offset The number of months to offset based off the param.date given
  * @param {Date} param.minDate The earliest date available
  * @param {Date} param.maxDate The furthest date available
+ * @param {Number} firstDayOfWeek First day of the week (0=Sunday, 1=Monday)
  * @returns {Array.<Object>} An array of objects with month data
  */
 export function getCalendars({
@@ -132,7 +133,8 @@ export function getCalendars({
   monthsToDisplay,
   offset,
   minDate,
-  maxDate
+  maxDate,
+  firstDayOfWeek
 }) {
   let months = [];
   let startDate = normalizeDate(date);
@@ -154,7 +156,8 @@ export function getCalendars({
       startDate.getFullYear(),
       selected,
       minDate,
-      maxDate
+      maxDate,
+      firstDayOfWeek
     );
     months.push(calendarDates);
   }
@@ -170,9 +173,10 @@ export function getCalendars({
  * @param {Array.<Date>} selectedDates An array of dates currently selected
  * @param {Date} minDate The earliest date available
  * @param {Date} maxDate The furthest date available
+ * @param {Number} firstDayOfWeek First day of the week (0=Sunday, 1=Monday)
  * @returns {Object} The data for the selected month/year
  */
-function getMonths(month, year, selectedDates, minDate, maxDate) {
+function getMonths(month, year, selectedDates, minDate, maxDate, firstDayOfWeek) {
   // increment since months are 0-based in JS
   month++;
   // If month is great than 12, increment year and reset
@@ -224,7 +228,10 @@ function getMonths(month, year, selectedDates, minDate, maxDate) {
 
   // Fill out front and end of month from preceding month
   let firstDate = new Date(dates[0].date);
-  let firstDay = firstDate.getDay();
+  let firstDay = firstDate.getDay() - firstDayOfWeek;
+  if (firstDay < 0) {
+    firstDay = firstDay + 7;
+  }
 
   while (firstDay > 0) {
     dates.unshift("");
@@ -254,8 +261,9 @@ function getMonths(month, year, selectedDates, minDate, maxDate) {
     firstDayOfMonth: firstDate,
     lastDayOfMonth: lastDate,
     month: month - 1, // normalize month value (0-based)
-    year: year,
-    weeks: weeks
+    year,
+    weeks,
+    firstDayOfWeek,
   };
 }
 

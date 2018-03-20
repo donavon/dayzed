@@ -22,11 +22,13 @@ class Dayzed extends React.Component {
 
     const calendars = getCalendars({
       ...otherProps,
+      firstDayOfWeek,
       offset: this.getOffset()
     });
 
     const props = {
       calendars,
+      firstDayOfWeek,
       getDateProps: this.getDateProps,
       getBackProps: this.getBackProps,
       getForwardProps: this.getForwardProps
@@ -121,6 +123,7 @@ Dayzed.defaultProps = {
   monthsToDisplay: 1,
   onOffsetChanged: noop,
   children: noop,
+  firstDayOfWeek: 0,
 };
 
 Dayzed.propTypes = {
@@ -136,7 +139,8 @@ Dayzed.propTypes = {
   selected: PropTypes.oneOfType([
     PropTypes.arrayOf(Date),
     PropTypes.instanceOf(Date)
-  ])
+  ]),
+  firstDayOfWeek:PropTypes.number,
 };
 
 export default Dayzed;

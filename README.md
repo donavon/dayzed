@@ -38,6 +38,7 @@ This differs from other solutions which render things for their use case and the
   - [render](#render)
   - [offset](#offset)
   - [onOffsetChanged](#onoffsetchanged)
+  - [firstDayOfWeek](#firstdayofweek)
 - [Control Props](#control-props)
 - [Render Prop Function](#render-prop-function)
   - [prop getters](#prop-getters)
@@ -278,6 +279,13 @@ Number off months to offset from the `date` prop.
 Called when the user selects to go forward or back. This function is **required** if `offset` is being provided as a prop.
 
 * `offset`: The number of months offset.
+
+### firstDayOfWeek
+
+> `number` | 0=Sunday (default), 1=Monday
+
+Used to set the first day of the week for international calendars.
+
 
 ## Control Props
 
